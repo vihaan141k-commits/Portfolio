@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vihaan Khanna | Portfolio</title>
+<style>
+:root{--bg:#fafaf7;--card:#fff;--text:#1c1c1a;--muted:#6b6b66;--accent:#3b5bdb;--line:#e5e5df;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141416;--card:#1e1e22;--text:#ececea;--muted:#9a9a95;--accent:#8fa4ff;--line:#2e2e34}}
+:root[data-theme="dark"]{--bg:#141416;--card:#1e1e22;--text:#ececea;--muted:#9a9a95;--accent:#8fa4ff;--line:#2e2e34}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;transition:background .3s,color .3s}
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+nav{max-width:860px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.logo{font-weight:700;margin-right:auto;color:var(--text);text-decoration:none}
+nav a.link{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:8px;font-size:15px;transition:.2s}
+nav a.link:hover{color:var(--text);transform:translateY(-1px)}
+nav a.link.active{color:var(--accent);background:var(--card)}
+#theme{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:15px}
+#prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent)}
+main{max-width:860px;margin:auto;padding:48px 20px 80px}
+.page{display:none}.page.show{display:block;animation:in .3s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.15;margin:0 0 12px}
+h2{font-size:1.6rem;margin:0 0 16px}
+p{margin:0 0 14px}.muted{color:var(--muted)}
+.role{font-size:1.25rem;color:var(--accent);min-height:1.9em;font-weight:600}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--accent);vertical-align:-3px;margin-left:2px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.btn{display:inline-block;background:var(--accent);color:var(--bg);padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:600;margin:8px 8px 0 0;border:0;cursor:pointer;font-size:16px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 22px;text-align:center}
+.stat b{display:block;font-size:1.8rem;color:var(--accent)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.chip{background:var(--card);border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:5px 14px;cursor:pointer;font-size:14px}
+.chip.on{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;cursor:pointer;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.card.hide{display:none}
+.card h3{margin:0 0 6px;font-size:1.1rem}
+.more{max-height:0;overflow:hidden;transition:max-height .35s ease;font-size:14.5px}
+.card.open .more{max-height:200px;margin-top:10px}
+.hint{font-size:13px;color:var(--accent)}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:2px 10px;margin:8px 6px 0 0;color:var(--muted)}
+.skill{margin-bottom:14px}
+.skill div.top{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width 1s ease}
+.tl{border-left:2px solid var(--line);padding-left:18px;margin:8px 0 0 6px}
+.tl div{position:relative;margin-bottom:16px}
+.tl div::before{content:"";position:absolute;left:-25px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+input,textarea{width:100%;padding:11px 12px;margin-bottom:6px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:10px;font:inherit}
+input.bad,textarea.bad{border-color:#e03131}
+.err{color:#e03131;font-size:13px;min-height:18px;margin-bottom:6px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,80px);background:var(--text);color:var(--bg);padding:10px 20px;border-radius:99px;font-size:14px;transition:transform .3s;z-index:9}
+#toast.on{transform:translate(-50%,0)}
+footer{text-align:center;color:var(--muted);font-size:14px;padding:24px 20px}
+</style>
+</head>
+<body>
+<header><nav>
+  <a class="logo" href="#home">Vihaan<span style="color:var(--accent)">.</span></a>
+  <a class="link" href="#home">Home</a>
+  <a class="link" href="#about">About</a>
+  <a class="link" href="#projects">Projects</a>
+  <a class="link" href="#contact">Contact</a>
+  <button id="theme" title="Toggle theme" aria-label="Toggle theme">🌓</button>
+</nav><div id="prog"></div></header>
+
+<main>
+  <section class="page" id="home">
+    <p class="muted">Hi, I'm</p>
+    <h1>Vihaan Khanna</h1>
+    <div class="role"><span id="typed"></span><span class="caret"></span></div>
+    <p style="font-size:1.1rem;max-width:560px">First-year CSE (AI/ML) student who likes building things with code and circuits. Learning, experimenting, and shipping small projects.</p>
+    <a class="btn" href="#projects">View my projects</a>
+    <a class="btn alt" href="#contact">Get in touch</a>
+    <div class="stats">
+      <div class="stat"><b data-to="3">0</b><span class="muted">Projects</span></div>
+      <div class="stat"><b data-to="5">0</b><span class="muted">Skills</span></div>
+      <div class="stat"><b data-to="1">0</b><span class="muted">Year in college</span></div>
+    </div>
+  </section>
+
+  <section class="page" id="about">
+    <h2>About me</h2>
+    <p>I'm a first-year Computer Science Engineering student specialising in AI &amp; ML. I'm at the start of my journey and I learn best by building: websites, small IoT projects, and whatever comes next.</p>
+    <p>I'm also interested in taking part in hackathons like Smart India Hackathon to work on real problems with a team.</p>
+    <h2 style="margin-top:28px">Skills</h2>
+    <div id="skills"></div>
+    <h2 style="margin-top:28px">Journey</h2>
+    <div class="tl">
+      <div><b>Started CSE (AI/ML)</b><br><span class="muted">Learning programming fundamentals</span></div>
+      <div><b>Built IoT practical projects</b><br><span class="muted">Arduino, sensors and circuits</span></div>
+      <div><b>Made this portfolio</b><br><span class="muted">HTML, CSS and JavaScript</span></div>
+      <div><b>Next: Smart India Hackathon</b><br><span class="muted">Team up and solve a real problem</span></div>
+    </div>
+  </section>
+
+  <section class="page" id="projects">
+    <h2>Projects</h2>
+    <p class="muted" style="margin-bottom:12px">Filter by type, and tap a card for details.</p>
+    <div class="filters">
+      <button class="chip on" data-f="all">All</button>
+      <button class="chip" data-f="iot">IoT</button>
+      <button class="chip" data-f="web">Web</button>
+    </div>
+    <div class="grid">
+      <div class="card" data-c="iot"><h3>Density Based Traffic Signal Controller</h3>
+        <p class="muted">Arduino-based signal that adapts to traffic density.</p>
+        <div class="more">IR sensors count vehicles on each lane, and the Arduino Uno gives more green time to the busier lane using LEDs as the signals.</div>
+        <span class="tag">Arduino Uno</span><span class="tag">IR sensors</span><span class="tag">LEDs</span><br><span class="hint">Tap for details ▾</span></div>
+      <div class="card" data-c="iot"><h3>Auto Dustbin Lid</h3>
+        <p class="muted">A dustbin that opens itself when you approach.</p>
+        <div class="more">A sensor detects a person nearby and a motor lifts the lid automatically, closing it again after a short delay. Hands-free and hygienic.</div>
+        <span class="tag">IoT</span><span class="tag">Sensors</span><br><span class="hint">Tap for details ▾</span></div>
+      <div class="card" data-c="web"><h3>This Portfolio Website</h3>
+        <p class="muted">A multi-page personal site in plain HTML, CSS and JS.</p>
+        <div class="more">Features page routing, a typing intro, dark/light mode, animated skill bars, project filters and a validated contact form.</div>
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><br><span class="hint">Tap for details ▾</span></div>
+    </div>
+  </section>
+
+  <section class="page" id="contact">
+    <h2>Contact</h2>
+    <p class="muted">Want to collaborate or just say hi? Send me a message.</p>
+    <div style="max-width:480px">
+      <input id="n" placeholder="Your name"><div class="err" id="en"></div>
+      <input id="e" type="email" placeholder="Your email"><div class="err" id="ee"></div>
+      <textarea id="m" rows="5" placeholder="Message (min 10 characters)"></textarea><div class="err" id="em"></div>
+      <button class="btn" id="send" style="margin-top:0">Send via email</button>
+    </div>
+    <p class="muted" style="margin-top:20px">GitHub: github.com/yourusername &nbsp;·&nbsp; LinkedIn: linkedin.com/in/yourusername</p>
+  </section>
+</main>
+<footer>© <span id="yr"></span> Vihaan Khanna. Built with HTML, CSS &amp; JS.</footer>
+<div id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const pages=$$('.page'),links=$$('a.link');
+const skills=[['HTML',80],['CSS',75],['Java',35],['C++',35],['Arduino',55]];
+$('#skills').innerHTML=skills.map(([n,v])=>`<div class="skill"><div class="top"><span>${n}</span><span class="muted">${v}%</span></div><div class="bar"><i data-w="${v}"></i></div></div>`).join('');
+
+function toast(t){const x=$('#toast');x.textContent=t;x.classList.add('on');setTimeout(()=>x.classList.remove('on'),2400)}
+
+function count(){$$('.stat b').forEach(b=>{const to=+b.dataset.to;let c=0;const t=setInterval(()=>{c++;b.textContent=c;if(c>=to)clearInterval(t)},to>3?120:250)})}
+function bars(){setTimeout(()=>$$('.bar i').forEach(i=>i.style.width=i.dataset.w+'%'),80)}
+
+function route(){
+  const id=(location.hash||'#home').slice(1);
+  const t=pages.some(p=>p.id===id)?id:'home';
+  pages.forEach(p=>p.classList.toggle('show',p.id===t));
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+t));
+  $$('.bar i').forEach(i=>i.style.width=0);
+  window.scrollTo(0,0);
+  if(t==='home')count();
+  if(t==='about')bars();
+}
+addEventListener('hashchange',route);route();
+
+// typing intro
+const roles=['CSE (AI/ML) Student','Web Developer in the making','IoT Tinkerer','Hackathon Enthusiast'];
+let ri=0,ci=0,del=false;
+(function type(){
+  const w=roles[ri];
+  $('#typed').textContent=w.slice(0,ci);
+  if(!del&&ci===w.length){del=true;return setTimeout(type,1400)}
+  if(del&&ci===0){del=false;ri=(ri+1)%roles.length}
+  ci+=del?-1:1;setTimeout(type,del?40:80);
+})();
+
+// scroll progress
+addEventListener('scroll',()=>{const h=document.documentElement;$('#prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+'%'});
+
+// theme toggle
+$('#theme').onclick=()=>{
+  const r=document.documentElement;
+  const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+};
+
+// project cards + filters
+$$('.card').forEach(c=>c.onclick=()=>c.classList.toggle('open'));
+$$('.chip').forEach(ch=>ch.onclick=()=>{
+  $$('.chip').forEach(x=>x.classList.toggle('on',x===ch));
+  $$('.card').forEach(c=>c.classList.toggle('hide',ch.dataset.f!=='all'&&c.dataset.c!==ch.dataset.f));
+});
+
+// contact form validation
+$('#send').onclick=()=>{
+  const n=$('#n'),e=$('#e'),m=$('#m');let ok=true;
+  const chk=(el,er,bad,msg)=>{el.classList.toggle('bad',bad);$(er).textContent=bad?msg:'';if(bad)ok=false};
+  chk(n,'#en',n.value.trim().length<2,'Please enter your name');
+  chk(e,'#ee',!/^\S+@\S+\.\S+$/.test(e.value),'Enter a valid email');
+  chk(m,'#em',m.value.trim().length<10,'Message is too short');
+  if(!ok)return toast('Please fix the highlighted fields');
+  toast('Opening your email app...');
+  location.href='mailto:you@example.com?subject='+encodeURIComponent('Portfolio message from '+n.value)+'&body='+encodeURIComponent(m.value+'\n\nFrom: '+n.value+' ('+e.value+')');
+};
+$('#yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
